@@ -8,7 +8,7 @@ from couchers.config import config
 from couchers.constants import EMAIL_TOKEN_VALIDITY
 from couchers.crypto import urlsafe_secure_token
 from couchers.db import session_scope
-from couchers.models import ClusterRole, ClusterSubscription, LoginToken, Node, PasswordResetToken, User
+from couchers.models import ClusterRole, ClusterSubscription, LoginToken, Node, Notification, PasswordResetToken, User
 from couchers.sql import couchers_select as select
 from couchers.utils import now
 
@@ -316,6 +316,18 @@ def send_donation_email(user, amount, receipt_url):
         user.email,
         "donation_received",
         template_args={"user": user, "amount": amount, "receipt_url": receipt_url},
+    )
+
+
+def send_notification_email(notification: Notification):
+    friend_requests_link = urls.friend_requests_link()
+
+    logger.info(f"Sending notification email to {notification.user=}:")
+
+    email.enqueue_email_from_template(
+        notification.user.email,
+        "notification",
+        template_args={"notification": notification},
     )
 
 
