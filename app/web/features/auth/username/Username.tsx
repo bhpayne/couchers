@@ -2,7 +2,7 @@ import { Typography } from "@material-ui/core";
 import { GetAccountInfoRes } from "proto/account_pb";
 import { useTranslation } from "react-i18next";
 
-import { USERNAME_HELPER, YOUR_USERNAME_IS } from "../constants";
+import { USERNAME_HELPER, YOUR_USERNAME_IS } from "../appConstants";
 
 export default function Username(accountInfo: GetAccountInfoRes.AsObject) {
   const { t } = useTranslation("auth");
