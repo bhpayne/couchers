@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 interface ProfileTagInputProps {
-  onChange: (_: any, value: string[]) => void;
+  onChange: (_: unknown, value: string[]) => void;
   value: string[];
   options: string[];
   label: string;
@@ -139,7 +139,7 @@ export default function ProfileTagInput({
   };
 
   const handleClose = (
-    event: React.ChangeEvent<{}>,
+    event: React.ChangeEvent<unknown>,
     reason: AutocompleteCloseReason
   ) => {
     if (reason === "toggleInput") {
@@ -193,7 +193,7 @@ export default function ProfileTagInput({
         placement="bottom-start"
         className={classes.popper}
       >
-        <div className={classes.header}>Press 'Enter' to add</div>
+        <div className={classes.header}>Press &apos;Enter&apos; to add</div>
         <Autocomplete
           open
           onClose={handleClose}
